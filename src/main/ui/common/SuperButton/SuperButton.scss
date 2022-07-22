@@ -1,0 +1,35 @@
+@import '../../../../sassStyles/variables.scss';
+
+.super-btn {
+    @extend %descr-text;
+	display: inline-block;
+    padding: 4px 18px;
+	background-color: $primary-color;
+    border-radius: 4px;
+	cursor: pointer;
+	text-align: center;
+	transition: all 0.2s;
+
+    &:hover {
+        background-color: saturate($primary-color, 87%);
+    }
+    &:disabled {
+        color: #ffffff;
+        background-color: #b4b4b4;
+        cursor: default;
+    }
+    &:disabled:hover {
+        background-color: #b4b4b4;
+    }
+
+    &.rounded {
+        border-radius: 2em;
+    }
+}
+
+
+
+
+
+
+

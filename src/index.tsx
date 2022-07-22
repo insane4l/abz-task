@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { store } from './main/bll/store'
 import { App } from './main/ui/App'
+import './sassStyles/_global.scss'
+import './sassStyles/_variables.scss'
 
 
 const root = ReactDOM.createRoot(

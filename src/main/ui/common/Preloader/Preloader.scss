@@ -1,0 +1,22 @@
+@import '../../../../sassStyles/variables.scss';
+
+.preloader-component {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 5px solid;
+    border-top-color: $secondary-color;
+    border-right-color: $secondary-color;
+    border-bottom-color: $secondary-color;
+    border-left-color: transparent;
+    border-radius: 50%;
+    animation: spin 800ms linear infinite;
+    user-select: none;
+}
+
+
+@keyframes spin {
+    to { 
+        transform: rotate(360deg); 
+    }
+}

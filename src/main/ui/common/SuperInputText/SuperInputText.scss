@@ -1,0 +1,62 @@
+@import '../../../../sassStyles/variables.scss';
+
+.super-input-text__wrapper {
+    position: relative;
+    width: 100%;
+
+    .label {
+        position: relative;
+    }
+
+    .label-text, .helper-text {
+        color: #7E7E7E;
+        font-family: inherit;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .label-text {
+        position: absolute;
+        top: 0;
+        left: 16px;
+        transform: translateY(-50%);
+        padding: 0 4px;
+        cursor: pointer;
+    }
+
+    .helper-text {
+        padding-left: 16px;
+        padding-top: 4px;
+    }
+}
+
+.super-input-text {
+    @extend %descr-text;
+    display: block;
+    width: 100%;
+    height: 54px;
+    padding: 14px 16px;
+    border: 1px solid #D0CFCF;
+    border-radius: 4px;
+    background-color: transparent;
+    outline: none;
+
+    &::placeholder {
+        color: #7E7E7E;
+    }
+
+    &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2)
+    }
+}
+
+.super-input-text__wrapper.error {
+    .super-input-text {
+        border: 2px solid #D32F2F;
+    }
+    .label-text, .helper-text {
+        color: #D32F2F;
+    }
+}
