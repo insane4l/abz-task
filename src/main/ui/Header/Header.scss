@@ -1,3 +1,24 @@
 .app-header {
+    padding: 13px 0;
+    background-color: #fff;
 
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__logo {
+        width: 104px;
+        height: 26px;
+    }
+
+    &__buttons {
+        button {
+            margin-right: 10px;
+        }
+        button:nth-last-child(1) {
+            margin-right: 0;
+        }
+    }
 }

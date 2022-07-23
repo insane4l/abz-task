@@ -12,7 +12,7 @@ export const SuperButton: React.FC<SuperButtonPropsType> = (
 
     const finalClassName = 'super-btn'
         + (rounded ? ' rounded' : '')
-        + (className ? ' className' : '')
+        + (className ? ` ${className}` : '')
 
 
     return (

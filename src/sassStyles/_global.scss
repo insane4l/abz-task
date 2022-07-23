@@ -92,8 +92,13 @@ input:-webkit-autofill:focus {
         margin: 0 32px;
     }
 }
-@media screen and (max-width: 360px){
+@media screen and (max-width: 412px){
     .app-container {
         margin: 0 16px;
     }
 }
+// @media screen and (max-width: 360px){
+//     .app-container {
+//         margin: 0 16px;
+//     }
+// }

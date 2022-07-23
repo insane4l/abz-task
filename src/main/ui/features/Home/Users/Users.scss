@@ -1,0 +1,26 @@
+@import '../../../../../sassStyles/variables.scss';
+
+.users-section {
+    padding-top: 140px;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    &__title {
+        @extend %title-text;
+        margin-bottom: 50px;
+    }
+
+    .users-list {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 29px; // todo: check browsers from Technical Task (caniuse)
+        margin-bottom: 50px;
+    }
+}

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, useState } from 'react'
 import './SuperUpload.scss'
 
-export const SuperUpload: FC<SuperUploadPropsType> = React.memo( ({label = '', error, setUploadedFile}) => {
+export const SuperUpload: FC<SuperUploadPropsType> = React.memo( ({label = '', error, name, setUploadedFile}) => {
 
     const [inputValue, setInputValue] = useState('')
     
@@ -26,7 +26,12 @@ export const SuperUpload: FC<SuperUploadPropsType> = React.memo( ({label = '', e
     
     return (
         <label className={superUploadFinalCN}>
-            <input className='super-upload__input' value={inputValue} onChange={onChangeHandler} type="file" />
+            <input 
+                name={name}
+                className='super-upload__input'
+                value={inputValue}
+                onChange={onChangeHandler}
+                type="file" />
             
             <div tabIndex={0} className='super-upload__btn'>Upload</div>
 
@@ -45,5 +50,6 @@ export const SuperUpload: FC<SuperUploadPropsType> = React.memo( ({label = '', e
 type SuperUploadPropsType = {
     label?: string
     error?: string
+    name?: string
     setUploadedFile?: (value: File | undefined) => void
 }

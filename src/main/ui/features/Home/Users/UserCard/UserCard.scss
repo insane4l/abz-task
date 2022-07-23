@@ -1,0 +1,38 @@
+@import '../../../../../../sassStyles/variables.scss';
+
+.user-card {
+    @extend %descr-text;
+    width: 282px;
+    min-height: 254px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #fff;
+
+    .data-field {
+        margin-bottom: 20px;
+    }
+    .data-field:nth-last-child(1) {
+        margin-bottom: 0;
+    }
+
+    &__position {
+        
+    }
+
+    &__email {
+
+    }
+
+    &__tel {
+
+    }
+
+    // set three dots if the text does not fit in the line (name and position data)
+    &__name,
+    &__position {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

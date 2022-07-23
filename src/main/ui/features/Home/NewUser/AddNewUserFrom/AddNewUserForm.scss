@@ -1,0 +1,52 @@
+.add-new-user-form {
+    width: 380px;
+
+    .name-field,
+    .email-field {
+        margin-bottom: 28px;
+    }
+
+    .phone-field {
+        margin-bottom: 21px;
+    }
+
+    .new-user-position {
+        margin-bottom: 50px;
+    }
+    .position-list__title {
+        margin-bottom: 14px;
+    }
+
+    .position-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        li {
+            margin-bottom: 13px;
+        }
+        li:nth-last-child(1) {
+            margin-bottom: 0;
+        }
+    }
+
+    .upload-input {
+        margin-bottom: 32px;
+    }
+
+    &__btn {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+
+
+
+// media query
+@media screen and (max-width: 412px){
+    .add-new-user-form {
+        width: 238px;
+    }
+}

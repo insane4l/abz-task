@@ -1,5 +1,50 @@
+@import '../../../../../sassStyles/variables.scss';
+
 .homepage-promo {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 1170px;
+    min-height: 650px;
     margin: 0 auto;
+    padding: 30px;
+
+    &__content {
+        max-width: 380px;;
+        text-align: center;
+    }
+
+    &__title {
+        @extend %title-text;
+        margin-bottom: 21px;
+        color: #fff;
+    }
+
+    &__descr {
+        @extend %descr-text;
+        margin-bottom: 32px;
+        color: #fff;
+    }
+}
+
+
+
+
+
+// media query
+@media screen and (max-width: 768px){
+    .homepage-promo {
+        min-height: 500px;
+    }
+}
+@media screen and (max-width: 412px){
+    .homepage-promo {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+@media screen and (max-width: 360px){
+    .homepage-promo {
+        min-height: 500px;
+    }
 }

@@ -11,7 +11,7 @@ export const App = () => {
 		<div className='app'>
 			<Header />
 
-			<main className='main-section app-container'>
+			<main className='main-section'>
 				<Home />
 			</main>
 		</div>

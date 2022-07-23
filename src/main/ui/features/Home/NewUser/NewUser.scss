@@ -1,0 +1,13 @@
+@import '../../../../../sassStyles/variables.scss';
+
+.new-user-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 140px;
+
+    &__title {
+        @extend %title-text;
+        margin-bottom: 50px;
+    }
+}
