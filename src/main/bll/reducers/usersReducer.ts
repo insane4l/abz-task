@@ -1,4 +1,4 @@
-import { GetUsersRequestParams, usersAPI, UserType } from "../../dal/usersAPI"
+import { GetUsersRequestParamsType, usersAPI, UserType } from "../../api/usersAPI"
 import {BaseThunkType, InferActionsTypes} from "../store"
 
 const initialState = {
@@ -8,7 +8,9 @@ const initialState = {
     isLoading: false,
 }
 
-export const usersReducer = (state: UsersStateType = initialState, action: UsersActionsTypes): UsersStateType => {
+export const usersReducer = (state: UsersStateType = initialState,
+action: UsersActionsTypes): UsersStateType => {
+    
     switch (action.type) {
 
         case 'abz/users/SET-USERS':
@@ -33,7 +35,8 @@ export const usersActions = {
 }
 
 
-export const requestUsersTC = (params: GetUsersRequestParams): BaseThunkType<UsersActionsTypes> => async (dispatch) => {
+export const requestUsersTC = (params: GetUsersRequestParamsType): BaseThunkType<UsersActionsTypes> => 
+async (dispatch) => {
 
     dispatch( usersActions.setLoadingStatus(true) )
 
