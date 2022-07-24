@@ -1,4 +1,9 @@
 .app-header {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
     padding: 13px 0;
     background-color: #fff;
 
@@ -14,10 +19,10 @@
     }
 
     &__buttons {
-        button {
+        a {
             margin-right: 10px;
         }
-        button:nth-last-child(1) {
+        a:nth-last-child(1) {
             margin-right: 0;
         }
     }

@@ -3,6 +3,7 @@
 .tooltip {
     @extend %descr-text;
     position: absolute;
+    z-index: 666;
     right: 0;
     bottom: 0;
     transform: translateY(calc(100% + 5px));
@@ -12,11 +13,12 @@
     max-width: 95%;
     padding: 3px 15px;
     border-radius: 4px;
+    word-break: break-word;
     color: #ffffff;
     background-color: #212121;
 
     &-wrapper {
         position: relative;
-        display: inline-block;
+        display: block;
     }
 }

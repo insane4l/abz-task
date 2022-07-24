@@ -9,6 +9,7 @@ export const App = () => {
 	
 	return (
 		<div className='app'>
+			<div id='top-anchor'></div>
 			<Header />
 
 			<main className='main-section'>

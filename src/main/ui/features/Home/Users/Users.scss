@@ -1,7 +1,8 @@
 @import '../../../../../sassStyles/variables.scss';
 
 .users-section {
-    padding-top: 140px;
+    padding-top: 100px;
+    margin-top: 40px;
 
     &__content {
         display: flex;
@@ -22,5 +23,15 @@
         flex-wrap: wrap;
         gap: 29px; // todo: check browsers from Technical Task (caniuse)
         margin-bottom: 50px;
+    }
+
+    &__error {
+        @extend %descr-text;
+        padding: 30px;
+        color: red;
+    }
+
+    &__preloader {
+        padding: 15px;
     }
 }

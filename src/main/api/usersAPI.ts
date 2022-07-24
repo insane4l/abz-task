@@ -15,7 +15,7 @@ export const usersAPI = {
 
 // types
 export type GetUsersRequestParamsType = {
-    page: number // Page number
+    page?: number // Page number (default: 1)
     offset?: number
     count?: number // Users per page (default: 5 - minimum: 1 - maximum: 100)
 }

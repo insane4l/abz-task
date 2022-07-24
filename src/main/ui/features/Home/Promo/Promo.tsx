@@ -1,7 +1,7 @@
 import React from 'react'
-import { SuperButton } from '../../../common/SuperButton/SuperButton'
 import './Promo.scss'
 import promoBackgroundImage from '../../../../../assets/images/promoBG.jpeg'
+import { SuperScrollButton } from '../../../common/SuperButton/SuperScrollButton'
 
 export const Promo = () => {
 
@@ -26,7 +26,7 @@ export const Promo = () => {
                      Front-End Development keeps evolving.
                 </p>
 
-                <SuperButton>Sign up</SuperButton>
+                <SuperScrollButton href='#registration'>Sign up</SuperScrollButton>
 
             </div>
         </section>

@@ -9,30 +9,25 @@
     text-align: center;
     background-color: #fff;
 
-    .data-field {
+    .avatar-box {
+        display: flex;
+        justify-content: center;
         margin-bottom: 20px;
     }
-    .data-field:nth-last-child(1) {
-        margin-bottom: 0;
+
+    .data-fields >*:nth-child(1) {
+        margin-bottom: 20px;
     }
 
-    &__position {
-        
-    }
-
-    &__email {
-
-    }
-
-    &__tel {
-
-    }
-
-    // set three dots if the text does not fit in the line (name and position data)
-    &__name,
-    &__position {
+    // set three dots if the text does not fit in the line
+    .data-field {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        cursor: pointer;
+    }
+
+    .data-field.with-margin {
+        margin: 20px 0;
     }
 }

@@ -1,11 +1,11 @@
 import React, { FC, ReactNode, useState } from 'react'
 import './Tooltip.scss'
 
-export const Tooltip: FC<TooltipPropsType> = ({label, children}) => {
+export const Tooltip: FC<TooltipPropsType> = React.memo( ({label, children}) => {
 
     const [displayInfo, setInfoDisplay] = useState(false)
 
-    const onMouseOverHandler = () => {
+    const onClickHandler = () => {
 		setInfoDisplay(true)
 	}
 
@@ -16,7 +16,7 @@ export const Tooltip: FC<TooltipPropsType> = ({label, children}) => {
     return (
         <div 
             className='tooltip-wrapper'
-            onMouseEnter={onMouseOverHandler}
+            onClick={onClickHandler}
             onMouseLeave={onMouseLeaveHandler}>
                 
             {children}
@@ -28,7 +28,7 @@ export const Tooltip: FC<TooltipPropsType> = ({label, children}) => {
             }
         </div>
     )
-}
+})
 
 
 
