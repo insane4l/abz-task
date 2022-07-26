@@ -19,15 +19,4 @@
         margin-bottom: 20px;
     }
 
-    // set three dots if the text does not fit in the line
-    .data-field {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        cursor: pointer;
-    }
-
-    .data-field.with-margin {
-        margin: 20px 0;
-    }
 }

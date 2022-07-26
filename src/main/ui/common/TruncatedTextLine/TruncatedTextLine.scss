@@ -1,5 +1,17 @@
 @import '../../../../sassStyles/variables.scss';
 
+
+.truncated-text-line {
+    @extend %descr-text;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    // set three dots if the text does not fit in the line
+    text-overflow: ellipsis;
+}
+
+
+
 .tooltip {
     @extend %descr-text;
     position: absolute;
@@ -20,5 +32,6 @@
     &-wrapper {
         position: relative;
         display: block;
+        cursor: pointer;
     }
 }

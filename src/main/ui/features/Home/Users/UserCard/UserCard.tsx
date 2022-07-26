@@ -1,16 +1,14 @@
 import React, { FC } from 'react'
-import { Tooltip } from '../../../../common/Tooltip/Tooltip'
+import { TruncatedTextLine } from '../../../../common/TruncatedTextLine/TruncatedTextLine'
 import { UserAvatar } from '../../../../common/UserAvatar/UserAvatar'
 import './UserCard.scss'
 
 export const UserCard: FC<UserCardPropsType> = React.memo( ({photo, name, position, email, phone}) => {
 
     const mappedFields = [name, position, email, phone].map(el => (
-        <Tooltip key={el} label={el}>
-            <div className='data-field'>
-                {el}
-            </div>
-        </Tooltip>
+        <TruncatedTextLine key={el}>
+            {el}
+        </TruncatedTextLine>
     ))
     
     return (
