@@ -1,24 +1,23 @@
-import React, { ChangeEvent, FC, useState } from 'react'
+import React, { ChangeEvent, FC } from 'react'
 import './SuperUpload.scss'
 
-export const SuperUpload: FC<SuperUploadPropsType> = React.memo( ({label = '', error, name, setUploadedFile}) => {
+export const SuperUpload: FC<SuperUploadPropsType> = React.memo( ({label = '', error, name, onFileUploaded, value = '', onChange, onChangeValue}) => {
 
-    const [inputValue, setInputValue] = useState('')
-    
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        onChange && onChange(e)
 
-        setInputValue(e.currentTarget.value)
+        onChangeValue && onChangeValue(e.currentTarget.value)
         
         if(e.target.files?.length) {
-            setUploadedFile && setUploadedFile(e.target.files[0])
+            onFileUploaded && onFileUploaded(e.target.files[0])
         }
     }
 
     // todo: depends of SuperUpload width
-    const clippedValue = (inputValue.length > 20) 
-        ? `...${inputValue.slice(inputValue.length -20)}`
-        : inputValue
+    const clippedValue = (value.length > 20) 
+        ? `...${value.slice(value.length -20)}`
+        : value
 
     const spanCN = clippedValue ? 'value' : 'placeholder'
     const superUploadFinalCN = 'super-upload' + (error ? ' error' : '')
@@ -29,7 +28,7 @@ export const SuperUpload: FC<SuperUploadPropsType> = React.memo( ({label = '', e
             <input 
                 name={name}
                 className='super-upload__input'
-                value={inputValue}
+                value={value}
                 onChange={onChangeHandler}
                 type="file" />
             
@@ -51,5 +50,8 @@ type SuperUploadPropsType = {
     label?: string
     error?: string
     name?: string
-    setUploadedFile?: (value: File | undefined) => void
+    onFileUploaded?: (value: File | undefined) => void
+    value?: string
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+    onChangeValue?: (value: string) => void
 }

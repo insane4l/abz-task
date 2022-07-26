@@ -1,6 +1,6 @@
 import React from 'react'
 import './Home.scss'
-import { NewUser } from './NewUser/NewUser'
+import { Registration } from './Registration/Registration'
 import { Promo } from './Promo/Promo'
 import { Users } from './Users/Users'
 
@@ -10,7 +10,7 @@ export const Home = () => {
             <Promo />
             <div className='app-container'>
                 <Users />
-                <NewUser />
+                <Registration />
             </div>
         </div>
     )

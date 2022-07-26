@@ -2,10 +2,14 @@ import {createStore, combineReducers, applyMiddleware, Action} from 'redux'
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux'
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import { UsersActionsTypes, usersReducer } from './reducers/usersReducer'
+import { AuthActionsTypes, authReducer } from './reducers/authReducer'
+import { AppActionsTypes, appReducer } from './reducers/appReducer'
 
 
 const rootReducer = combineReducers({
+    app: appReducer,
     users: usersReducer,
+    auth: authReducer,
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
@@ -21,7 +25,7 @@ window.store = store // todo: remove
 
 // types
 
-type AppRootActionsType = UsersActionsTypes
+type AppRootActionsType = AppActionsTypes | UsersActionsTypes | AuthActionsTypes
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
 export type DispatchActionType = ThunkDispatch<AppRootStateType, unknown, AppRootActionsType>

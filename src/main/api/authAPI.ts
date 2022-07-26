@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { apiBase } from "./apiBase"
 
 
@@ -7,8 +8,13 @@ export const authAPI = {
         return apiBase.get<GetPositionsResponseType>('/positions').then(res => res.data)
     },
 
-    register(payload: RegisterRequestPayloadType) {
-        return apiBase.post<RegisterResponseType>('/users', payload).then(res => res.data)
+    register(payload: FormData, token: string) {
+        return apiBase.post<RegisterResponseType>('/users', payload,
+            {headers: {'Token': token}}).then(res => res.data)
+    },
+
+    getToken() {
+        return apiBase.get<{success: boolean, token: string}>('/token').then(res => res.data)
     },
 
 }
@@ -28,11 +34,11 @@ export type PositionType = {
     name: string
 }
 
-type RegisterRequestPayloadType = {
-    name: string // - user name, should be 2-60 characters
-    email: string // - user email, must be a valid email according to RFC2822
-    phone: string // user phone number, should start with code of Ukraine +380
-    position_id: number // user position id. You can get list of all positions with their IDs using the API method GET api/v1/positions
+export type RegisterRequestPayloadType = {
+    name: string // should be 2-60 characters
+    email: string // must be a valid email according to RFC2822
+    phone: string // should start with code of Ukraine +380
+    position_id: string // user position id (integer - string)
     photo: File // - user photo should be jpg/jpeg image, with resolution at least 70x70px and size must not exceed 5MB.
 }
 
@@ -43,7 +49,7 @@ type RegisterResponseType = {
     fails?: RegisterFailsType // validation errors
 }
 
-type RegisterFailsType = {
+export type RegisterFailsType = {
     name?: Array<string>
     email?: Array<string>
     phone?: Array<string>

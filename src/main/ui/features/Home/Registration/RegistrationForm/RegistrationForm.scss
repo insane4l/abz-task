@@ -1,4 +1,6 @@
-.add-new-user-form {
+@import '../../../../../../sassStyles/variables.scss';
+
+.registration-form {
     width: 380px;
 
     .name-field,
@@ -10,7 +12,7 @@
         margin-bottom: 21px;
     }
 
-    .new-user-position {
+    .registration-position {
         margin-bottom: 50px;
     }
     .position-list__title {
@@ -29,10 +31,23 @@
         li:nth-last-child(1) {
             margin-bottom: 0;
         }
+
+        .registration-form__error {
+            padding: 0;
+            text-align: left;
+        }
     }
 
     .upload-input {
         margin-bottom: 32px;
+    }
+
+    &__error {
+        @extend %descr-text;
+        width: 100%;
+        padding: 5px 0;
+        text-align: center;
+        color: red;
     }
 
     &__btn {
@@ -46,7 +61,7 @@
 
 // media query
 @media screen and (max-width: 412px){
-    .add-new-user-form {
+    .registration-form {
         width: 238px;
     }
 }

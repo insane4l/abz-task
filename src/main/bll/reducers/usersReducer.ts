@@ -83,6 +83,7 @@ async (dispatch, getState) => {
 
             if (onlyNewUsersRequestMode) {
                 dispatch( usersActions.setNewestUsers(res.users!) )
+                dispatch( usersActions.setNewUsersRequestMode(false) )
 
             } else {
                 dispatch( usersActions.setUsers(res.users!) )
@@ -99,6 +100,7 @@ async (dispatch, getState) => {
         dispatch( usersActions.setLoadingStatus(false) )
     }
 }
+
 
 
 // types

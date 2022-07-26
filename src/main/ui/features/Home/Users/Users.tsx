@@ -1,5 +1,4 @@
-import React, { FC, useEffect } from 'react'
-import { UserType } from '../../../../api/usersAPI'
+import React, { useEffect } from 'react'
 import { requestUsersTC, usersActions } from '../../../../bll/reducers/usersReducer'
 import { useAppDispatch, useAppSelector } from '../../../../bll/store'
 import { Preloader } from '../../../common/Preloader/Preloader'
@@ -16,13 +15,29 @@ export const Users = () => {
     const users = useAppSelector(state => state.users.users)
     const currentPage = useAppSelector(state => state.users.currentPage)
     const totalPages = useAppSelector(state => state.users.totalPages)
+    const onlyNewUsersRequestMode = useAppSelector(state => state.users.onlyNewUsersRequestMode)
 
     useEffect(() => {
-        dispatch( requestUsersTC() )
+
+        // condition has been used to prevent double request when a new user is registered 
+        // requestRegistrationTC thunk sends the same request (requestUsersTC()). And currentPage which in useEffect dependencies will be changed
+        if (!onlyNewUsersRequestMode) { 
+
+            dispatch( requestUsersTC() )
+        }
+        
     }, [currentPage])
 
-    const showMoreUsers = () => {
 
+    useEffect(() => {
+        // cleanup
+        return () => {
+            dispatch( usersActions.setNewestUsers([]))
+        }
+    }, [])
+
+
+    const showMoreUsers = () => {
         let nextPage = currentPage + 1
 
         if (nextPage <= totalPages) {

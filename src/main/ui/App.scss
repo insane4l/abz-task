@@ -1,17 +1,61 @@
 @import '../../sassStyles/variables.scss';
 
 .app {
+    @extend %descr-text;
     min-height: 100vh;
     padding-bottom: 100px;
     background-color: $bg-color;
 
-    #top-anchor {
+    #top {
         padding-top: 60px;
         visibility: hidden;
         opacity: 0;
+    }
+
+    &__loading-status {
+        position: fixed;
+        inset: 0px;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0,0,0, .6);
+    }
+
+    &__error-status {
+        position: fixed;
+        z-index: 777;
+        right: 10px;
+        bottom: 10px;
+        max-width: 320px;
+        padding: 10px;
+        padding-right: 30px;
+        border: 1px solid red;
+        border-radius: 4px;
+        text-align: center;
+        background-color: #000;
+        color: red;
+        .close {
+            position: absolute;
+            right: 10px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+        }
     }
 }
 
 .main-section {
     
+}
+
+
+
+
+// media query
+@media screen and (max-width: 412px){
+    .app__error-status {
+        max-width: none;
+        left: 10px;
+    }
 }
