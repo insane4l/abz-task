@@ -6,7 +6,7 @@ import { requestUsersTC, usersActions } from "./usersReducer"
 const initialState = {
     positions: [] as OptionType[],
     isLoading: { positions: false, registration: false } as LoadingStatusesType,
-    registrationSuccess: true,
+    registrationSuccess: false,
     errorMessage: '',
     fails: {} as RegisterFailsType,
 }
@@ -32,13 +32,9 @@ action: AuthActionsTypes): AuthStateType => {
             return { ...state, isLoading: {...state.isLoading, ...action.loadingStatuses} }
 
         case 'abz/auth/SET-REGISTRATION-SUCCESS':
-            return { ...state, registrationSuccess: action.isSuccess }
-
         case 'abz/auth/SET-ERROR-MESSAGE':
-            return { ...state, errorMessage: action.message }
-
         case 'abz/auth/SET-REGISTRATION-FAILS':
-            return { ...state, fails: action.fails }
+            return { ...state, ...action.payload }
 
         default:
             return state
@@ -48,19 +44,19 @@ action: AuthActionsTypes): AuthStateType => {
 
 export const authActions = {
     setPositions: (positions: PositionType[]) => (
-        {type: 'abz/auth/SET-POSITIONS', positions} as const
+        { type: 'abz/auth/SET-POSITIONS', positions } as const
     ),
     setLoadingStatuses: (loadingStatuses: LoadingStatusesType) => (
-        {type: 'abz/auth/SET-LOADING-STATUSES', loadingStatuses} as const
+        { type: 'abz/auth/SET-LOADING-STATUSES', loadingStatuses } as const
     ),
-    setRegistrationSuccess: (isSuccess: boolean) => (
-        {type: 'abz/auth/SET-REGISTRATION-SUCCESS', isSuccess} as const
+    setRegistrationSuccess: (registrationSuccess: boolean) => (
+        { type: 'abz/auth/SET-REGISTRATION-SUCCESS', payload: {registrationSuccess} } as const
     ),
-    setErrorMessage: (message: string) => (
-        {type: 'abz/auth/SET-ERROR-MESSAGE', message} as const
+    setErrorMessage: (errorMessage: string) => (
+        { type: 'abz/auth/SET-ERROR-MESSAGE', payload: {errorMessage} } as const
     ),
     setRegistrationFails: (fails: RegisterFailsType) => (
-        {type: 'abz/auth/SET-REGISTRATION-FAILS', fails} as const
+        { type: 'abz/auth/SET-REGISTRATION-FAILS', payload: {fails} } as const
     ),
 }
 

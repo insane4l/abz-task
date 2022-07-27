@@ -3,6 +3,7 @@
 
 .truncated-text-line {
     @extend %descr-text;
+    display: block;
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
@@ -26,12 +27,16 @@
     padding: 3px 15px;
     border-radius: 4px;
     word-break: break-word;
+    text-align: left;
     color: #ffffff;
     background-color: #212121;
 
     &-wrapper {
         position: relative;
         display: block;
+    }
+
+    &-wrapper a {
         cursor: pointer;
     }
 }

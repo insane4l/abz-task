@@ -11,7 +11,7 @@ export const Header = React.memo( () => {
             <div className='app-container'>
                 <div className='app-header__container'>
 
-                    <a href='#top'>
+                    <a className='scroll-top-link' href='#top'>
                         <img className='app-header__logo' src={mainLogo} alt='main_logo' />
                     </a>
 

@@ -5,23 +5,37 @@ import './UserCard.scss'
 
 export const UserCard: FC<UserCardPropsType> = React.memo( ({photo, name, position, email, phone}) => {
 
-    const mappedFields = [name, position, email, phone].map(el => (
-        <TruncatedTextLine key={el}>
-            {el}
+    const cardDataArr = [
+        // {title: name, link: ''},
+        {title: position, link: ''},
+        {title: email, link: `mailto:${email}`},
+        {title: phone, link: `tel:${phone}`},
+    ]
+
+    const mappedFields = cardDataArr.map(el => (
+        <TruncatedTextLine key={el.title} linkTo={el.link} >
+            {el.title}
         </TruncatedTextLine>
     ))
     
     return (
-        <li className='user-card'>
+        <div className='user-card'>
             <div className='avatar-box'>
                 <UserAvatar userImage={photo} sideLength={70} />
             </div>
 
-            <div className='data-fields'>
+
+            <div className='user-data__list'>
+                <h3>
+                    <TruncatedTextLine>
+                        {name}
+                    </TruncatedTextLine>
+                </h3>
+
                 {mappedFields}
             </div>
-          
-        </li>
+
+        </div>
     )
 })
 

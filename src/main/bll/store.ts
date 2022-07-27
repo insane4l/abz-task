@@ -18,13 +18,9 @@ export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 export const useAppDispatch = () => useDispatch<DispatchActionType>()
 export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
 
-// @ts-ignore
-window.store = store // todo: remove
-
 
 
 // types
-
 type AppRootActionsType = AppActionsTypes | UsersActionsTypes | AuthActionsTypes
 
 export type AppRootStateType = ReturnType<typeof rootReducer>

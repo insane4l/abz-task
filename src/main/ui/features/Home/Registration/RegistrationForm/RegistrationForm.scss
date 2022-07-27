@@ -5,7 +5,7 @@
 
     .name-field,
     .email-field {
-        margin-bottom: 28px;
+        margin-bottom: 23px;
     }
 
     .phone-field {
@@ -16,7 +16,7 @@
         margin-bottom: 50px;
     }
     .position-list__title {
-        margin-bottom: 14px;
+        margin-bottom: 11px;
     }
 
     .position-list {
@@ -25,10 +25,10 @@
         justify-content: flex-start;
         align-items: flex-start;
 
-        li {
-            margin-bottom: 13px;
+        .super-radio {
+            margin-bottom: 7px;
         }
-        li:nth-last-child(1) {
+        .super-radio:nth-last-child(1) {
             margin-bottom: 0;
         }
 
@@ -39,7 +39,7 @@
     }
 
     .upload-input {
-        margin-bottom: 32px;
+        margin-bottom: 50px;
     }
 
     &__error {
@@ -62,6 +62,9 @@
 // media query
 @media screen and (max-width: 412px){
     .registration-form {
-        width: 238px;
+        width: 328px;
+        .super-upload {
+            min-width: 328px;
+        }
     }
 }

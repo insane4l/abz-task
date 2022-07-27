@@ -1,19 +1,19 @@
 import React, { createRef, FC, useEffect, useState } from 'react'
 import './TruncatedTextLine.scss'
 
-// todo: need code refactoring
+// todo: need code refactoring (remove ts-ignore also)
 
 /** One line of text. 
  * If the text does not fit, it will be clickable with tooltip  */
-export const TruncatedTextLine: FC<TruncatedTextLinePropsType> = React.memo( ({children}) => {
+export const TruncatedTextLine: FC<TruncatedTextLinePropsType> = React.memo( ({children, linkTo}) => {
 
-    const textLineDiv = createRef<HTMLDivElement>()
+    const textLineElementRef = createRef<HTMLSpanElement | HTMLAnchorElement>()
     const [textOverflowed, setTextOverflowed] = useState(false)
 
     useEffect(() => {
-        if (textLineDiv.current) {
+        if (textLineElementRef.current) {
 
-            const isOverflowed = checkOverflow(textLineDiv.current)
+            const isOverflowed = checkOverflow(textLineElementRef.current)
 
             setTextOverflowed(isOverflowed)
         }
@@ -21,12 +21,22 @@ export const TruncatedTextLine: FC<TruncatedTextLinePropsType> = React.memo( ({c
     }, [])
 
 
-    const checkOverflow = (el: HTMLDivElement) => {
+    const checkOverflow = (el: HTMLSpanElement | HTMLAnchorElement) => {
 
         let isOverflowed = el.scrollWidth > el.offsetWidth || el.scrollHeight > el.offsetHeight
 
         return isOverflowed
     }
+
+    const textLineElement = linkTo 
+        //@ts-ignore
+        ? <a ref={textLineElementRef} href={linkTo} className='truncated-text-line'>
+            {children}
+        </a>
+        //@ts-ignore
+        : <span ref={textLineElementRef} className='truncated-text-line'>
+            {children}
+        </span>
 
 
     return (
@@ -34,14 +44,10 @@ export const TruncatedTextLine: FC<TruncatedTextLinePropsType> = React.memo( ({c
             {textOverflowed
 
                 ? <Tooltip label={children}>
-                    <div ref={textLineDiv} className='truncated-text-line'>
-                        {children}
-                    </div>
+                    {textLineElement}
                 </Tooltip>
 
-                : <div ref={textLineDiv} className='truncated-text-line'>
-                    {children}
-                </div>
+                : textLineElement
             }
         </>
     )
@@ -54,7 +60,7 @@ const Tooltip: FC<TooltipPropsType> = ({label, children}) => {
 
     const [displayInfo, setInfoDisplay] = useState(false)
 
-    const onClickHandler = () => {
+    const onMouseEnterHandler = () => {
 		setInfoDisplay(true)
 	}
 
@@ -65,7 +71,7 @@ const Tooltip: FC<TooltipPropsType> = ({label, children}) => {
     return (
         <div 
             className='tooltip-wrapper'
-            onClick={onClickHandler}
+            onMouseEnter={onMouseEnterHandler}
             onMouseLeave={onMouseLeaveHandler}>
                 
             {children}
@@ -83,6 +89,7 @@ const Tooltip: FC<TooltipPropsType> = ({label, children}) => {
 
 type TruncatedTextLinePropsType = {
     children: string
+    linkTo?: string
 }
 
 type TooltipPropsType = {

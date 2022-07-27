@@ -21,22 +21,12 @@ action: UsersActionsTypes): UsersStateType => {
             return { ...state, users: [...state.users, ...action.users] }
 
         case 'abz/users/SET-NEWEST-USERS':
-            return { ...state, users: action.users }
-
         case 'abz/users/SET-NEW-USERS-REQUEST-MODE':
-            return { ...state, onlyNewUsersRequestMode: action.onlyNewUsers }
-
         case 'abz/users/SET-CURRENT-PAGE':
-            return { ...state, currentPage: action.page }
-
         case 'abz/users/SET-TOTAL-PAGES-COUNT':
-            return { ...state, totalPages: action.totalPages }
-
         case 'abz/users/SET-LOADING-STATUS':
-            return { ...state, isLoading: action.isLoading }
-
         case 'abz/users/SET-ERROR-MESSAGE':
-            return { ...state, errorMessage: action.message }
+            return { ...state, ...action.payload }
 
         default:
             return state
@@ -46,25 +36,25 @@ action: UsersActionsTypes): UsersStateType => {
 
 export const usersActions = {
     setUsers: (users: UserType[]) => (
-        {type: 'abz/users/SET-USERS', users} as const
+        { type: 'abz/users/SET-USERS', users } as const
     ),
     setNewestUsers: (users: UserType[]) => (
-        {type: 'abz/users/SET-NEWEST-USERS', users} as const
+        { type: 'abz/users/SET-NEWEST-USERS', payload: {users} } as const
     ),
-    setNewUsersRequestMode: (onlyNewUsers: boolean) => (
-        {type: 'abz/users/SET-NEW-USERS-REQUEST-MODE', onlyNewUsers} as const
+    setNewUsersRequestMode: (onlyNewUsersRequestMode: boolean) => (
+        { type: 'abz/users/SET-NEW-USERS-REQUEST-MODE', payload: {onlyNewUsersRequestMode} } as const
     ),
-    setCurrentPage: (page: number) => (
-        {type: 'abz/users/SET-CURRENT-PAGE', page} as const
+    setCurrentPage: (currentPage: number) => (
+        { type: 'abz/users/SET-CURRENT-PAGE', payload: {currentPage} } as const
     ),
     setTotalPagesCount: (totalPages: number) => (
-        {type: 'abz/users/SET-TOTAL-PAGES-COUNT', totalPages} as const
+        { type: 'abz/users/SET-TOTAL-PAGES-COUNT', payload: {totalPages} } as const
     ),
     setLoadingStatus: (isLoading: boolean) => (
-        {type: 'abz/users/SET-LOADING-STATUS', isLoading} as const
+        { type: 'abz/users/SET-LOADING-STATUS', payload: {isLoading} } as const
     ),
-    setErrorMessage: (message: string) => (
-        {type: 'abz/users/SET-ERROR-MESSAGE', message} as const
+    setErrorMessage: (errorMessage: string) => (
+        { type: 'abz/users/SET-ERROR-MESSAGE', payload: {errorMessage} } as const
     ),
 }
 

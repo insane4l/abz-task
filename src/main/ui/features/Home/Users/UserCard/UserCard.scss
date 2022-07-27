@@ -2,8 +2,6 @@
 
 .user-card {
     @extend %descr-text;
-    width: 282px;
-    min-height: 254px;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -15,8 +13,53 @@
         margin-bottom: 20px;
     }
 
-    .data-fields >*:nth-child(1) {
+    .user-data__list {
+        margin: 0 auto;
+        width: 330px;
+    }
+
+    .user-data__list >*:nth-child(1) {
         margin-bottom: 20px;
     }
 
+}
+
+
+
+
+// media query
+@media screen and (max-width: 1340px){
+    .user-card {
+        .user-data__list {
+            width: 242px;
+        }
+    }
+}
+@media screen and (max-width: 1111px){
+    .user-card {
+        .user-data__list {
+            width: 200px;
+        }
+    }
+}
+@media screen and (max-width: 768px){
+    .users-section {
+        .users-list {
+            gap: 16px;
+        }
+    }
+}
+@media screen and (max-width: 620px){
+    .users-section {
+        .users-list {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+@media screen and (max-width: 360px){
+    .users-section {
+        .users-list {
+            
+        }
+    }
 }

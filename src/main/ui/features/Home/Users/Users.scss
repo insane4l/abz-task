@@ -18,10 +18,10 @@
     }
 
     .users-list {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 29px; // todo: check browsers from Technical Task (caniuse)
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 29px;
+        width: 100%;
         margin-bottom: 50px;
     }
 
@@ -33,5 +33,41 @@
 
     &__preloader {
         padding: 15px;
+    }
+}
+
+
+
+
+
+// media query
+@media screen and (max-width: 966px){
+    .users-section {
+        .users-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 29px;
+        }
+    }
+}
+@media screen and (max-width: 768px){
+    .users-section {
+        .users-list {
+            gap: 16px;
+        }
+    }
+}
+@media screen and (max-width: 620px){
+    .users-section {
+        .users-list {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+@media screen and (max-width: 360px){
+    .users-section {
+        .users-list {
+            
+        }
     }
 }

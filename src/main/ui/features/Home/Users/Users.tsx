@@ -54,12 +54,12 @@ export const Users = () => {
             <div className='users-section__content'>
                 <h2 className='users-section__title'>Working with GET request</h2>
 
-                <ul className='users-list'>
+                <div className='users-list'>
                     {(mappedUsers.length > 0) 
                         ? mappedUsers
-                        : <li>Users list is empty</li>
+                        : <div>Users list is empty</div>
                     }
-                </ul>
+                </div>
 
                 {errorMessage 
                     && <span className='users-section__error'>{errorMessage}</span>
