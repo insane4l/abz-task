@@ -1,4 +1,4 @@
-import { authAPI, PositionType, RegisterFailsType, RegisterRequestPayloadType } from "../../api/authAPI"
+import { authAPI, PositionType, RegisterFailsType } from "../../api/authAPI"
 import { OptionType } from "../../ui/common/SuperRadio/SuperRadio"
 import {BaseThunkType, InferActionsTypes} from "../store"
 import { requestUsersTC, usersActions } from "./usersReducer"
@@ -6,7 +6,7 @@ import { requestUsersTC, usersActions } from "./usersReducer"
 const initialState = {
     positions: [] as OptionType[],
     isLoading: { positions: false, registration: false } as LoadingStatusesType,
-    registerSuccess: false,
+    registrationSuccess: true,
     errorMessage: '',
     fails: {} as RegisterFailsType,
 }
@@ -31,13 +31,13 @@ action: AuthActionsTypes): AuthStateType => {
         case 'abz/auth/SET-LOADING-STATUSES':
             return { ...state, isLoading: {...state.isLoading, ...action.loadingStatuses} }
 
-        case 'abz/auth/SET-REGISTER-STATUS':
-            return { ...state, registerSuccess: action.registerSuccess }
+        case 'abz/auth/SET-REGISTRATION-SUCCESS':
+            return { ...state, registrationSuccess: action.isSuccess }
 
         case 'abz/auth/SET-ERROR-MESSAGE':
             return { ...state, errorMessage: action.message }
 
-        case 'abz/auth/SET-REGISTER-FAILS':
+        case 'abz/auth/SET-REGISTRATION-FAILS':
             return { ...state, fails: action.fails }
 
         default:
@@ -53,14 +53,14 @@ export const authActions = {
     setLoadingStatuses: (loadingStatuses: LoadingStatusesType) => (
         {type: 'abz/auth/SET-LOADING-STATUSES', loadingStatuses} as const
     ),
-    setRegisterStatus: (registerSuccess: boolean) => (
-        {type: 'abz/auth/SET-REGISTER-STATUS', registerSuccess} as const
+    setRegistrationSuccess: (isSuccess: boolean) => (
+        {type: 'abz/auth/SET-REGISTRATION-SUCCESS', isSuccess} as const
     ),
     setErrorMessage: (message: string) => (
         {type: 'abz/auth/SET-ERROR-MESSAGE', message} as const
     ),
-    setRegisterFails: (fails: RegisterFailsType) => (
-        {type: 'abz/auth/SET-REGISTER-FAILS', fails} as const
+    setRegistrationFails: (fails: RegisterFailsType) => (
+        {type: 'abz/auth/SET-REGISTRATION-FAILS', fails} as const
     ),
 }
 
@@ -93,7 +93,7 @@ async (dispatch, getState) => {
 
     dispatch( authActions.setLoadingStatuses({registration: true}) )
     dispatch( authActions.setErrorMessage('') )
-    dispatch( authActions.setRegisterFails({}) )
+    dispatch( authActions.setRegistrationFails({}) )
 
     const token = getState().app.token
 
@@ -102,7 +102,7 @@ async (dispatch, getState) => {
         const res = await authAPI.register(payload, token)
 
         if (res.success) {
-            dispatch( authActions.setRegisterStatus(true) )
+            dispatch( authActions.setRegistrationSuccess(true) )
             dispatch( usersActions.setNewUsersRequestMode(true) )
             dispatch( usersActions.setCurrentPage(1) )
             dispatch( requestUsersTC() )
@@ -113,7 +113,7 @@ async (dispatch, getState) => {
         dispatch( authActions.setErrorMessage(e.response?.data?.message || 'Some error occured') )
 
         if (e.response?.data?.fails) {
-            dispatch( authActions.setRegisterFails(e.response.data.fails) )
+            dispatch( authActions.setRegistrationFails(e.response.data.fails) )
         }
 
     } finally {

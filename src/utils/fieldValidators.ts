@@ -20,7 +20,7 @@ export const validateField = {
 
     isPhone(fieldValue: string, errorsObj: ErrorsObjType, valueName: string) {
         if (!/^[\+]{0,1}380([0-9]{9})$/i.test(fieldValue)) {
-            errorsObj[valueName] = 'Invalid phone number'
+            errorsObj[valueName] = 'Invalid number. Template: +38 (XXX) XXX - XX - XX'
         }
     },
 

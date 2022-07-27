@@ -1,0 +1,15 @@
+.registration-success__wrapper {
+    position: relative;
+    width: 320px;
+    height: 280px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.registration-success__img {
+    max-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+}

@@ -13,7 +13,6 @@ import { RegisterFailsType } from '../../../../../api/authAPI'
 
 
 export const RegistrationForm = React.memo( () => {
-    console.log('reg form rerendered');
 
     const dispatch = useAppDispatch()
     const isPositionsLoading = useAppSelector(state => state.auth.isLoading.positions)
@@ -47,9 +46,9 @@ export const RegistrationForm = React.memo( () => {
     
     const formik = useFormik({
         initialValues: {
-            name: 'Roman',
-            email: 'insane@mail.ru',
-            phone: '+380454332345',
+            name: '',
+            email: '',
+            phone: '',
             position_id: '',
             photo: '' as string | undefined,
         },
@@ -85,8 +84,6 @@ export const RegistrationForm = React.memo( () => {
 
             if (!formik.status?.photoError && imageFile) {
                 
-                // formik don't create FormData, but we need to process image file
-                // before sending to the server, so we need to do this:
                 let formData = new FormData()
                 formData.append('position_id', values.position_id)
                 formData.append('name', values.name)
@@ -102,6 +99,8 @@ export const RegistrationForm = React.memo( () => {
 
 
     const validateUploadFile = (file: undefined | File) => {
+
+        formik.setTouched({...formik.touched, photo: true})
 
         function setUploadFieldErrorStatus(errorsObj: {[name: string]: string}) {
             formik.setStatus({...formik.status, ...errorsObj})
@@ -119,9 +118,13 @@ export const RegistrationForm = React.memo( () => {
     const phoneError = (formik.errors.phone && formik.touched.phone) ? formik.errors.phone : ''
     const positionError = (formik.errors.position_id && formik.touched.position_id) ? formik.errors.position_id : ''
     
-    const photoError = formik.status.photoError && formik.touched.photo ? formik.status.photoError : ''
+    const photoError = (formik.status.photoError && formik.touched.photo) ? formik.status.photoError : ''
 
-    
+    // DISABLED BUTTON VARIANTS:
+    // const submitBtnDisabled = !formik.dirty || !formik.isValid || formik.status?.photoError
+    // const submitBtnDisabled = !formik.dirty
+    const submitBtnDisabled = !formik.values.email || !formik.values.name || !formik.values.phone || !formik.isValid
+
     return (
         <form className='registration-form' onSubmit={formik.handleSubmit}>
 
@@ -179,7 +182,11 @@ export const RegistrationForm = React.memo( () => {
             
             {isRegistrationLoading
                 ? <Preloader />
-                : <SuperButton disabled={false} type='submit' className='registration-form__btn'>
+                : <SuperButton 
+                    disabled={submitBtnDisabled}
+                    type='submit'
+                    className='registration-form__btn'>
+
                     Sign up
                 </SuperButton>
             }

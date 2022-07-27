@@ -1,8 +1,9 @@
-import React, { ChangeEvent, FC } from 'react'
+import React, { ChangeEvent, FC, useState } from 'react'
 import './SuperUpload.scss'
 
 export const SuperUpload: FC<SuperUploadPropsType> = React.memo( ({label = '', error, name, onFileUploaded, value = '', onChange, onChangeValue}) => {
 
+    const [fileName, setFileName] = useState('')
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         onChange && onChange(e)
@@ -11,15 +12,17 @@ export const SuperUpload: FC<SuperUploadPropsType> = React.memo( ({label = '', e
         
         if(e.target.files?.length) {
             onFileUploaded && onFileUploaded(e.target.files[0])
+
+            setFileName(e.target.files[0].name)
         }
     }
 
     // todo: depends of SuperUpload width
-    const clippedValue = (value.length > 20) 
-        ? `...${value.slice(value.length -20)}`
-        : value
+    const clippedFileName = (fileName.length > 20) 
+        ? `...${fileName.slice(fileName.length -20)}`
+        : fileName
 
-    const spanCN = clippedValue ? 'value' : 'placeholder'
+    const spanCN = clippedFileName ? 'value' : 'placeholder'
     const superUploadFinalCN = 'super-upload' + (error ? ' error' : '')
 
     
@@ -36,7 +39,7 @@ export const SuperUpload: FC<SuperUploadPropsType> = React.memo( ({label = '', e
 
             <div className='super-upload__value'>
                 <span className={spanCN}>
-                    {clippedValue || label}
+                    {clippedFileName || label}
                 </span>
             </div>
 
