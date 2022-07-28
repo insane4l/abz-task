@@ -18,7 +18,7 @@ export const TruncatedTextLine: FC<TruncatedTextLinePropsType> = React.memo( ({c
             setTextOverflowed(isOverflowed)
         }
 
-    }, [])
+    }, [textLineElementRef])
 
 
     const checkOverflow = (el: HTMLSpanElement | HTMLAnchorElement) => {

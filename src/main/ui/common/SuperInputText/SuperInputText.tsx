@@ -2,7 +2,7 @@ import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, KeyboardEven
 import './SuperInputText.scss'
 
 
-export const SuperInputText: React.FC<SuperInputTextPropsType> = (
+export const SuperInputText: React.FC<SuperInputTextPropsType> = React.memo( (
     {
         type, // we block type property here (we dont use this later)
         onChange, onChangeText,
@@ -55,7 +55,7 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = (
             <span className={finalSpanCN}>{error || helperText}</span>
         </div>
     )
-}
+})
 
 
 

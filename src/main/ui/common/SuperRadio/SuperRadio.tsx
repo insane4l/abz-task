@@ -2,10 +2,10 @@ import React, {ChangeEvent, InputHTMLAttributes, DetailedHTMLProps} from 'react'
 import './SuperRadio.scss'
 
 
-export const SuperRadio: React.FC<SuperRadioPropsType> = (
+export const SuperRadio: React.FC<SuperRadioPropsType> = React.memo( (
     {
         type, name,
-        options, value,
+        options = [], value,
         onChange, onChangeOption, labelClassName = '',
         ...restProps
     }
@@ -18,7 +18,7 @@ export const SuperRadio: React.FC<SuperRadioPropsType> = (
     }
 
 
-    const mappedOptions = options ? options.map((o, i) => {
+    const mappedOptions = options.map((o, i) => {
 
         const disabledLabelClass = o.disabled ? 'super-radio_disabled' : ''
         const selectedLabelClass = value === o.value ? 'active' : ''
@@ -38,14 +38,14 @@ export const SuperRadio: React.FC<SuperRadioPropsType> = (
                 {o.label}
             </label>
         )
-    }) : [] // if options did not come from the server
+    })
 
     return (
         <>
             {mappedOptions}
         </>
     )
-}
+})
 
 
 

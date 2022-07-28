@@ -41,7 +41,7 @@ export const RegistrationForm = React.memo( () => {
 
     useEffect(() => {
         dispatch( requestPositionsTC() )
-    }, [])
+    }, [dispatch])
 
     
     const formik = useFormik({
@@ -109,7 +109,6 @@ export const RegistrationForm = React.memo( () => {
         validateUpload.checkAvatarRequirements(file, setUploadFieldErrorStatus, 'photoError')
 
         setImageFile(file)
-
     }
 
 

@@ -4,7 +4,7 @@ import {BaseThunkType, InferActionsTypes} from "../store"
 const initialState = {
     users: [] as UserType[],
     currentPage: 1,
-    pageCount: 6, // reducer doesn’t exist
+    pageCount: 6, // action creator doesn’t exist
     totalPages: 0,
     // totalUsers: 0, if needed you can extend requestUsersTC with reducer (set from api request)
     isLoading: false,

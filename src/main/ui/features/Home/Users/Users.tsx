@@ -6,7 +6,7 @@ import { SuperButton } from '../../../common/SuperButton/SuperButton'
 import { UserCard } from './UserCard/UserCard'
 import './Users.scss'
 
-export const Users = () => {
+export const Users = React.memo( () => {
 
     const dispatch = useAppDispatch()
 
@@ -26,7 +26,7 @@ export const Users = () => {
             dispatch( requestUsersTC() )
         }
         
-    }, [currentPage])
+    }, [dispatch, currentPage])
 
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export const Users = () => {
         return () => {
             dispatch( usersActions.setNewestUsers([]))
         }
-    }, [])
+    }, [dispatch])
 
 
     const showMoreUsers = () => {
@@ -78,4 +78,4 @@ export const Users = () => {
             </div>
         </section>
     )
-}
+})

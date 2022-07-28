@@ -1,10 +1,14 @@
 import React from 'react'
 import './Promo.scss'
-import promoBackgroundImage from '../../../../../assets/images/promoBG.jpeg'
+import promoBG from '../../../../../assets/images/promoBG.jpeg'
+import promoBG_small from '../../../../../assets/images/promoBG_small.jpeg'
 import { SuperScrollButton } from '../../../common/SuperButton/SuperScrollButton'
+import { isMobile } from 'react-device-detect'
 
-export const Promo = () => {
+export const Promo = React.memo( () => {
 
+    const promoBackgroundImage = isMobile ? promoBG_small : promoBG
+    
     const promoStyles = {
         background: `
             linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -31,4 +35,4 @@ export const Promo = () => {
             </div>
         </section>
     )
-}
+})

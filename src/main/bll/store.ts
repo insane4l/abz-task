@@ -1,4 +1,4 @@
-import {createStore, combineReducers, applyMiddleware, Action} from 'redux'
+import {legacy_createStore as createStore, combineReducers, applyMiddleware, Action} from 'redux'
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux'
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import { UsersActionsTypes, usersReducer } from './reducers/usersReducer'

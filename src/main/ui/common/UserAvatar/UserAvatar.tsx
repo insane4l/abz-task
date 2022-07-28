@@ -11,7 +11,7 @@ export const UserAvatar: React.FC<UserAvatarPropsType> = React.memo( ({userImage
 
     useEffect(() => {
         setSideAutoLength(avatarRef.current!.offsetWidth)
-    }, [])
+    }, [avatarRef])
 
     const imgErrorHandler = () => {
         setAvatarImage(defaultAvatar)

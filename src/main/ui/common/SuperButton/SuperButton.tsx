@@ -2,7 +2,7 @@ import React, {ButtonHTMLAttributes, DetailedHTMLProps, ReactNode} from 'react'
 import './SuperButton.scss'
 
 
-export const SuperButton: React.FC<SuperButtonPropsType> = (
+export const SuperButton: React.FC<SuperButtonPropsType> = React.memo( (
     {
         className,
         rounded = true,
@@ -21,7 +21,7 @@ export const SuperButton: React.FC<SuperButtonPropsType> = (
             {...restProps}
         />
     )
-}
+})
 
 
 
