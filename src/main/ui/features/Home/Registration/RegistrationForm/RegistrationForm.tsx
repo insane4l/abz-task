@@ -10,16 +10,17 @@ import './RegistrationForm.scss'
 import { authActions, requestPositionsTC, requestRegistrationTC } from '../../../../../bll/reducers/authReducer'
 import { Preloader } from '../../../../common/Preloader/Preloader'
 import { RegisterFailsType } from '../../../../../api/authAPI'
+import { authSelectors } from '../../../../../bll/selectors/selectors'
 
 
 export const RegistrationForm = React.memo( () => {
 
     const dispatch = useAppDispatch()
-    const isPositionsLoading = useAppSelector(state => state.auth.isLoading.positions)
-    const isRegistrationLoading = useAppSelector(state => state.auth.isLoading.registration)
-    const responseError = useAppSelector(state => state.auth.errorMessage)
-    const responseFails = useAppSelector(state => state.auth.fails)
-    const positions = useAppSelector(state => state.auth.positions)
+    const isPositionsLoading = useAppSelector(authSelectors.getIsPositionsLoading)
+    const isRegistrationLoading = useAppSelector(authSelectors.getIsRegistrationLoading)
+    const responseError = useAppSelector(authSelectors.getErrorMessage)
+    const responseFails = useAppSelector(authSelectors.getFails)
+    const positions = useAppSelector(authSelectors.getPositions)
 
     const [imageFile, setImageFile] = useState<File>()
 
@@ -180,7 +181,7 @@ export const RegistrationForm = React.memo( () => {
             {mappedResponseFails}
             
             {isRegistrationLoading
-                ? <Preloader />
+                ? <div className='submit-preloader-wrapper'><Preloader /></div>
                 : <SuperButton 
                     disabled={submitBtnDisabled}
                     type='submit'

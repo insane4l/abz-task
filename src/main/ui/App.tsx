@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { appActions, requestTokenTC } from '../bll/reducers/appReducer';
+import { appSelectors } from '../bll/selectors/selectors';
 import { useAppDispatch, useAppSelector } from '../bll/store';
 import './App.scss'
 import { Preloader } from './common/Preloader/Preloader';
@@ -11,8 +12,8 @@ export const App = React.memo( () => {
 
 	const dispatch = useAppDispatch()
 
-	const appError = useAppSelector(state => state.app.errorMessage)
-	const appIsLoading = useAppSelector(state => state.app.isLoading)
+	const appError = useAppSelector(appSelectors.getErrorMessage)
+	const appIsLoading = useAppSelector(appSelectors.getIsLoading)
 
 	useEffect(() => {
 		dispatch( requestTokenTC() )

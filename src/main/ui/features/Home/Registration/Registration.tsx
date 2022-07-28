@@ -3,10 +3,11 @@ import { RegistrationForm } from './RegistrationForm/RegistrationForm'
 import './Registration.scss'
 import { useAppSelector } from '../../../../bll/store'
 import { RegistrationSuccess } from './RegistrationSuccess/RegistrationSuccess'
+import { authSelectors } from '../../../../bll/selectors/selectors'
 
 export const Registration = () => {
 
-    const registrationSuccess = useAppSelector(state => state.auth.registrationSuccess)
+    const registrationSuccess = useAppSelector(authSelectors.getRegistrationSuccess)
 
     return (
         <section id='registration' className='registration-section'>

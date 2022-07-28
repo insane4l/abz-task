@@ -60,5 +60,5 @@ async (dispatch) => {
 
 
 // types
-type AppStateType = typeof initialState
+export type AppStateType = typeof initialState
 export type AppActionsTypes = InferActionsTypes<typeof appActions>

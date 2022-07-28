@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { requestUsersTC, usersActions } from '../../../../bll/reducers/usersReducer'
+import { usersSelectors } from '../../../../bll/selectors/selectors'
 import { useAppDispatch, useAppSelector } from '../../../../bll/store'
 import { Preloader } from '../../../common/Preloader/Preloader'
 import { SuperButton } from '../../../common/SuperButton/SuperButton'
@@ -10,12 +11,12 @@ export const Users = React.memo( () => {
 
     const dispatch = useAppDispatch()
 
-    const isLoading = useAppSelector(state => state.users.isLoading)
-    const errorMessage = useAppSelector(state => state.users.errorMessage)
-    const users = useAppSelector(state => state.users.users)
-    const currentPage = useAppSelector(state => state.users.currentPage)
-    const totalPages = useAppSelector(state => state.users.totalPages)
-    const onlyNewUsersRequestMode = useAppSelector(state => state.users.onlyNewUsersRequestMode)
+    const isLoading = useAppSelector(usersSelectors.getIsLoading)
+    const errorMessage = useAppSelector(usersSelectors.getErrorMessage)
+    const users = useAppSelector(usersSelectors.getUsers)
+    const currentPage = useAppSelector(usersSelectors.getCurrentPage)
+    const totalPages = useAppSelector(usersSelectors.getTotalPages)
+    const onlyNewUsersRequestMode = useAppSelector(usersSelectors.getUsersRequestMode)
 
     useEffect(() => {
 

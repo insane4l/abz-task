@@ -50,6 +50,12 @@
         color: red;
     }
 
+    .submit-preloader-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
     &__btn {
         display: block;
         margin: 0 auto;
