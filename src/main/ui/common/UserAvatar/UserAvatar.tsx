@@ -3,7 +3,10 @@ import './UserAvatar.scss'
 import defaultAvatar from '../../../../assets/images/defaultAvatar.svg'
 
 
-export const UserAvatar: React.FC<UserAvatarPropsType> = React.memo( ({userImage, sideLength}) => {
+export const UserAvatar: React.FC<UserAvatarPropsType> = React.memo( (
+{
+    userImage, sideLength, altText = 'user image'
+}) => {
 
     const avatarRef = createRef<HTMLDivElement>()
     const [sideAutoLength, setSideAutoLength] = useState<number>()
@@ -28,7 +31,7 @@ export const UserAvatar: React.FC<UserAvatarPropsType> = React.memo( ({userImage
                 onError={imgErrorHandler}
                 className='user-avatar__image'
                 src={avatarImage}
-                alt="user_image"
+                alt={altText}
             />
         </div>
     )
@@ -38,6 +41,7 @@ export const UserAvatar: React.FC<UserAvatarPropsType> = React.memo( ({userImage
 
 type UserAvatarPropsType = {
     userImage?: string | undefined | null
+    altText?: string
     /** Side length in pixels 
     * If you don't specify the length of the side: 
     * width will be 100% of parent, height will be equal to width

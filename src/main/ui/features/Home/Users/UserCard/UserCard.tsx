@@ -21,7 +21,7 @@ export const UserCard: FC<UserCardPropsType> = React.memo( ({photo, name, positi
     return (
         <div className='user-card'>
             <div className='avatar-box'>
-                <UserAvatar userImage={photo} sideLength={70} />
+                <UserAvatar userImage={photo} altText={name} sideLength={70} />
             </div>
 
 
